@@ -1,7 +1,7 @@
 # Handoff and report contracts
 
 Use existing task records. Do not require a new tracker or status service.
-Choose a report path inside the worker's permitted scope; keep it reachable after
+For durable or separate-session work, choose a report path inside the worker's permitted scope; keep it reachable after
 that worker exits. For separate hosts, agree how the report will be retrieved.
 
 ## Handoff
@@ -11,7 +11,8 @@ that worker exits. For separate hosts, agree how the report will be retrieved.
 - Dependencies, relevant project contracts and prohibited/out-of-scope changes.
 - Authorized actions and where to stop for decisions or approval.
 - Verification expectations, including review before physical/device execution.
-- Absolute report location, reply route and relevant lifetime expectations.
+- Reply route and relevant lifetime expectations; an absolute retained report location
+  for durable/separate-session work. A recoverable native result suffices for short work.
 
 ## Worker report
 

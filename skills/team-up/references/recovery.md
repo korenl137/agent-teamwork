@@ -1,7 +1,9 @@
 # Failure, intervention and resumption
 
 - Scope-contained implementation/test failures: the owning worker investigates, fixes
-  and verifies. Do not duplicate its work from the conductor's context.
+  and verifies internally. Do not duplicate its work from the conductor's context.
+  Escalate promptly when the failure is important or needs a user decision, as defined
+  in the operating decisions linked from SKILL.md.
 - Temporary tool/network errors: establish whether the action ran before retrying.
 - Timeout or uncertain result: inspect actual process, PR and remote state first;
   never equate timeout with failure or replay an uncertain external write blindly.
