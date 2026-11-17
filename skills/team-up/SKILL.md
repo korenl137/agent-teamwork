@@ -5,13 +5,14 @@ description: >-
   integration and cleanup. Use for team-up, 팀업, 나눠서 작업, or coordinating workers
   across tasks or repositories.
 metadata:
-  version: "0.5.0"
+  version: "0.5.1"
 ---
 
 # Team up
 
 Use native agents and existing project contracts. This procedure grants no additional
-execution, publication, merge, installation or cleanup authority.
+execution, publication, merge, installation or cleanup authority. Before dispatching
+work or changing its scope/risk, read [model selection](references/models.md).
 
 1. **Choose direct work or delegation.** Do small, tightly coupled work in the main
    session. Delegate self-contained research/review or independent implementation.

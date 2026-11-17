@@ -37,9 +37,10 @@ an entire agents folder: it may contain personal roles or an Explore override.
 No personal global instructions, other skills, AEM or Herdr are required.
 
 Definitions omit `model`; the host's model policy and per-invocation selection apply.
-This differs from explicitly setting `inherit`. A strong conductor and task-appropriate
-workers are useful starting points, not model/version requirements. Do not force all
-workers to the same model solely because the conductor uses it.
+This differs from explicitly setting `inherit`. The
+[model-selection contract](skills/team-up/references/models.md) owns common capability,
+escalation, fallback and reporting principles. Model identifiers, profile settings and
+consumer-specific exceptions remain with the user; no configuration loader is added.
 
 ## Update, uninstall and evidence
 

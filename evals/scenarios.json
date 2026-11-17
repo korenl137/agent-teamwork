@@ -223,5 +223,28 @@
       "Preserves original processes, parent/child links and unsent input",
       "Verifies actual placement and keep/lifetime state after the authorized action"
     ]
+  },
+  {
+    "query": "The conductor uses a strong model; delegate a bounded mechanical edit under the existing host policy.",
+    "expected_behavior": [
+      "Reads the common model-selection reference before dispatch",
+      "Chooses capability appropriate to the task without forcing all workers onto the conductor model",
+      "Keeps host/user model choices and authorization intact; adds no model router"
+    ]
+  },
+  {
+    "query": "Review a subtle high-risk change; an implementation worker used a cheaper model.",
+    "expected_behavior": [
+      "Scales reviewer judgment to risk and complexity, not automatically below the conductor or implementer",
+      "Follows consumer-specific model requirements without hardcoding a vendor model into public definitions"
+    ]
+  },
+  {
+    "query": "The required review model is unavailable, or the native review route hides its internal model.",
+    "expected_behavior": [
+      "Reports unavailability or unknown model rather than silently downgrading or inventing an identifier",
+      "Uses only policy-authorized alternatives and reports actual or unverified model execution",
+      "Records unavailable cost as unknown instead of borrowing another profile’s usage"
+    ]
   }
 ]
