@@ -1,6 +1,7 @@
 # Integration, approval and cleanup
 
-Before seeking approval, inspect original evidence and independent-review results.
+Before seeking approval, inspect original evidence and required review results.
+Distinguish direct checks from independent review and state any unreviewed scope.
 For several PRs, prepare a compact table: task/repository, PR, exact head, summary,
 self-checks, independent review, CI, dependency order and unverified/deferred items.
 Keep details in the PR bodies. Do not create a dashboard just to show the set.

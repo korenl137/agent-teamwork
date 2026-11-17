@@ -5,7 +5,7 @@ description: >-
   integration and cleanup. Use for team-up, 팀업, 나눠서 작업, or coordinating workers
   across tasks or repositories.
 metadata:
-  version: "0.5.1"
+  version: "0.5.2"
 ---
 
 # Team up
@@ -14,15 +14,19 @@ Use native agents and existing project contracts. This procedure grants no addit
 execution, publication, merge, installation or cleanup authority. Before dispatching
 work or changing its scope/risk, read [model selection](references/models.md).
 
-1. **Choose direct work or delegation.** Do small, tightly coupled work in the main
-   session. Delegate self-contained research/review or independent implementation.
-   Native Explore handles repository discovery; a general-purpose worker or separate
-   session implements. In collaboration mode the conductor owns scope, decisions and
-   integration; send worker fixes back to their owner. Give conductor-written changes
-   an explicit scope and the same independent review.
+1. **Choose direct work or delegation.** Do small, tightly coupled work directly.
+   For bounded delegated work, default to a native subagent. Use a separate session
+   for required independent environment/permissions, persistence/reconnection, or
+   user-requested direct observation/intervention; size or a PR alone is not a reason.
+   Read [operating decisions](references/operating.md) when choosing execution,
+   reporting progress or deciding review scope. Native Explore handles discovery;
+   general-purpose workers implement. The conductor owns scope, decisions and
+   integration; send worker fixes back to their owner. Apply the same risk-based
+   review criteria to conductor-written and worker-written changes.
 2. **Hand off a bounded task.** State the original objective, acceptance criteria,
-   ownership, dependencies, allowed actions, stop conditions and an absolute report
-   location accessible to both sides. One writer per shared file. Use the handoff
+   ownership, dependencies, allowed actions, stop conditions and a recoverable reply
+   route. Durable/separate-session work needs an absolute retained report location.
+   One writer per shared file. Use the handoff
    template in [contracts](references/contracts.md). Follow project isolation rules.
    Read [Claude execution](references/claude.md) for native dispatch and replies;
    read [Herdr](references/herdr.md) only for separate terminals or visible layout.
@@ -31,16 +35,18 @@ work or changing its scope/risk, read [model selection](references/models.md).
    supporting diff, logs or artifacts yourself. Refresh the relevant remote before
    relying on remote state; a local read-only task needs no fetch. Use messages or
    completion notifications to wait, not repeated screen reads.
-4. **Review independently.** A fresh read-only reviewer gets the original request,
-   acceptance criteria and exact target/revision, without the parent's conversation,
-   worker reports/paths, or conductor/inspector conclusions. Raw evidence paths are
-   allowed. Use native code review where available; if PR summaries or commit messages
-   carry the worker's conclusion, provide the clean diff range to a fresh reviewer
-   instead. Fix requirement gaps and correctness failures and review the fix again.
-   Self-review and passing tests do not replace this check. Review worker-written
-   code before any on-device or physical run, then obtain required execution approval.
-   A user's explicit review skip applies only to that stated approval or run; report
-   the skip and do not carry it to later actions.
+4. **Review proportionately.** Self-check low-impact, simple changes with suitable
+   validation. Use independent review for meaningful behavior/design changes and
+   security, permissions or governing shared guidance, and whenever project rules
+   require it. Tests and self-review do not replace required independent review.
+   A fresh read-only reviewer gets the original request, acceptance criteria and exact
+   target/revision, without the parent's conversation, worker reports/paths or prior
+   conclusions; raw evidence paths are allowed. Use native code review where available;
+   if summaries expose worker conclusions, supply a clean diff range instead. Fix
+   requirement/correctness failures, then recheck the affected scope and interactions;
+   broaden only for new risk, scope changes or invalidated coverage. Review worker code
+   before physical/device execution and obtain required execution approval. An explicit
+   review skip applies only to the stated action; report it and never carry it forward.
 5. **Integrate and close.** Use [completion](references/completion.md) for a PR set,
    revision-bound approval, dependency verification and scoped cleanup. Use an
    optional inspector at valuable transitions, not every step. Without one, perform

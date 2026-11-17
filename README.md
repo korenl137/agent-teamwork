@@ -19,7 +19,13 @@ Other hosts can reuse the contracts, but their execution compatibility is unveri
 
 The main session conducts collaboration. It may implement small single tasks directly;
 in collaboration mode, worker fixes go back to their owner. Conductor integration edits
-still receive independent review. There is no custom implementer or orchestrator.
+follow the same risk-based review criteria as worker changes. There is no custom
+implementer or orchestrator.
+
+Use subagents by default for bounded delegation. Separate sessions serve required
+independent environments, persistence or direct user interaction. The
+[operating decisions](skills/team-up/references/operating.md) also define when to
+report to the user and how to scale review effort to risk.
 
 ## Install in Claude Code
 

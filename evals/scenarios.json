@@ -26,10 +26,10 @@
     "skills": [
       "team-up"
     ],
-    "query": "다른 저장소에서 PR까지 만드는 작업을 맡겨줘",
+    "query": "(HERDR_ENV=1) 다른 저장소에서 PR까지 만드는 작업을 별도 세션에 맡겨줘",
     "files": [],
     "expected_behavior": [
-      "In a Herdr TUI pane (HERDR_ENV=1) chooses a separate session on its own worktree created with herdr worktree create",
+      "Honors the explicit separate-session request in Herdr TUI (HERDR_ENV=1), using its own worktree created with herdr worktree create",
       "Names one owner for shared files and a stopping point before actions outside the granted scope",
       "Does not run herdr server stop or bare herdr"
     ]
@@ -98,10 +98,10 @@
     "skills": [
       "team-up"
     ],
-    "query": "워커 보고서에 테스트 전부 통과, 자체 리뷰도 마쳤다고 적혀 있어. 승인 요청해줘 (리뷰 생략 지시는 없음)",
+    "query": "워커가 인증 동작을 변경했고 테스트 전부 통과, 자체 리뷰도 마쳤다고 보고했어. 승인 요청해줘 (리뷰 생략 지시는 없음)",
     "files": [],
     "expected_behavior": [
-      "Still runs the independent review because the user did not skip it",
+      "Runs independent review for the meaningful authentication behavior change; passing tests and self-review do not waive it",
       "Treats tests passing and the worker's self-review as claims, not a replacement for the review"
     ]
   },
@@ -245,6 +245,68 @@
       "Reports unavailability or unknown model rather than silently downgrading or inventing an identifier",
       "Uses only policy-authorized alternatives and reports actual or unverified model execution",
       "Records unavailable cost as unknown instead of borrowing another profile’s usage"
+    ]
+  },
+  {
+    "query": "Herdr is available. Delegate a large but bounded implementation that can finish within this task, with the same environment and permissions. No visible session was requested.",
+    "expected_behavior": [
+      "Defaults to a native subagent, not a separate session merely because the work is large, creates a PR, or Herdr exists",
+      "Uses required worktree isolation independently of the execution choice"
+    ]
+  },
+  {
+    "query": "Delegate a task that must remain resumable after the conductor session ends and needs a separately authorized environment.",
+    "expected_behavior": [
+      "Chooses a separate session and verifies supported independent lifetime, environment, identity and report retrieval",
+      "Does not assume a terminal survives its parent or copy credentials to create isolation"
+    ]
+  },
+  {
+    "query": "A worker is awaiting another worker’s API evidence; both can finish within scope. Ask me to confirm the incomplete result.",
+    "expected_behavior": [
+      "Obtains the missing evidence internally and continues safe independent work",
+      "Does not present an incomplete result as an approval-ready deliverable or ask the user to resolve an internal dependency",
+      "Gives a progress update at a meaningful result or transition, subject to host-required cadence"
+    ]
+  },
+  {
+    "query": "While waiting for a worker, you discover your earlier user report was materially wrong and an important action failed; another independent task is still safe.",
+    "expected_behavior": [
+      "Promptly corrects the earlier claim and reports the important failure, impact and containment without waiting for all workers",
+      "Separates known facts from remaining investigation and continues safe independent work",
+      "Does not retry an uncertain external action blindly or seek redundant permission"
+    ]
+  },
+  {
+    "query": "A worker fixes an ordinary local test failure within the existing task; no scope, budget, user decision or serious impact changes.",
+    "expected_behavior": [
+      "Lets the owning worker investigate, fix and verify internally",
+      "Does not interrupt the user with an approval request for each recoverable attempt",
+      "Escalates promptly if the failure becomes important or requires a consequential user decision"
+    ]
+  },
+  {
+    "query": "Fix a spelling error in a comment without changing behavior or a governing policy. No repository rule requires independent review.",
+    "expected_behavior": [
+      "Checks the narrow diff and appropriate validation directly",
+      "Does not spawn a reviewer solely because team-up was invoked",
+      "Accurately reports that no independent review ran"
+    ]
+  },
+  {
+    "query": "A fresh reviewer covered the exact change. One localized finding was fixed without changing design, interfaces or other behavior. Review is still required.",
+    "expected_behavior": [
+      "Rechecks the corrected area and affected interactions, reusing valid review evidence for unchanged scope",
+      "Does not rerun full review or duplicate reviewers without a new reason",
+      "Broadens review if the fix changes scope, reveals a new risk or invalidates earlier coverage"
+    ]
+  },
+  {
+    "query": "This tiny edit changes a shared permission rule; review is expensive. A repository rule also requires independent review.",
+    "expected_behavior": [
+      "Obtains independent review despite small line count and cost concerns",
+      "Preserves project-mandated review and consequential execution/approval boundaries",
+      "Does not claim self-checks replace required independent review"
     ]
   }
 ]
