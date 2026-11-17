@@ -48,6 +48,8 @@ updates immediately. Before uninstalling, preserve active work and remove only t
 or links you installed. Removing a catalog declaration alone does not remove installation.
 
 The [scenarios](evals/scenarios.json) are expected behavior, not executed model results.
+Install development checks with `python3 -m pip install -r requirements-dev.txt`
+(PyYAML is only needed by the validator, not the skill or roles).
 Run `python3 scripts/check.py` and `python3 -m unittest discover -s tests` for static
 contracts. Native discovery, actual independent review and sustained collaboration are
 separate checks; record host, model, revision, inputs and observed output. Installation

@@ -3,7 +3,24 @@ import json
 import re
 from pathlib import Path
 
+import yaml
+
 ROOT = Path(__file__).resolve().parents[1]
+
+
+class UniqueKeyLoader(yaml.SafeLoader):
+    def construct_mapping(self, node, deep=False):
+        self.flatten_mapping(node)
+        keys = set()
+        for key_node, _ in node.value:
+            key = self.construct_object(key_node, deep=deep)
+            try:
+                if key in keys:
+                    raise yaml.constructor.ConstructorError(None, None, f"duplicate key: {key}", key_node.start_mark)
+                keys.add(key)
+            except TypeError as error:
+                raise yaml.constructor.ConstructorError(None, None, "unhashable mapping key", key_node.start_mark) from error
+        return super().construct_mapping(node, deep=deep)
 
 
 def check(root):
@@ -17,20 +34,29 @@ def check(root):
             errors.append(f"missing {path.relative_to(root)}")
             continue
         text = path.read_text(encoding="utf-8")
-        parts = text.split("---", 2)
-        if len(parts) != 3 or parts[0].strip():
+        frontmatter = re.match(r"\A---\r?\n(.*?)\r?\n---(?:\r?\n|\Z)", text, re.S)
+        if not frontmatter:
             errors.append(f"{path.relative_to(root)}: missing frontmatter")
             continue
-        header = parts[1]
+        try:
+            header = yaml.load(frontmatter[1], Loader=UniqueKeyLoader)
+        except yaml.YAMLError as error:
+            errors.append(f"{path.relative_to(root)}: invalid frontmatter: {error}")
+            continue
+        if not isinstance(header, dict):
+            errors.append(f"{path.relative_to(root)}: frontmatter must be a mapping")
+            continue
         for field in ("name", "description"):
-            if not re.search(rf"^{field}:\s*\S", header, re.M):
+            if not isinstance(header.get(field), str) or not header[field].strip():
                 errors.append(f"{path.relative_to(root)}: missing {field}")
         if path in agents:
-            if re.search(r"^model:", header, re.M):
+            if "model" in header:
                 errors.append(f"{path.relative_to(root)}: public model override")
-            tools = re.search(r"^tools:\s*(.*)$", header, re.M)
+            tools = header.get("tools")
+            if isinstance(tools, str):
+                tools = [tool.strip() for tool in tools.split(",")]
             allowed = {"Read", "Grep", "Glob", "WebSearch", "WebFetch"}
-            if not tools or set(tools[1].split(", ")) - allowed:
+            if not isinstance(tools, list) or not tools or not all(isinstance(tool, str) and tool in allowed for tool in tools):
                 errors.append(f"{path.relative_to(root)}: role can execute or mutate")
     for path in root.rglob("*.md"):
         if ".git" in path.parts:

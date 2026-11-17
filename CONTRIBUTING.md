@@ -8,6 +8,7 @@ link conditional references directly from it. Core installation must work withou
 Use native Explore and general-purpose workers, and do not add a runtime or model loader.
 Agent definitions omit model fields. Keep review and inspection read-only.
 
+Install validator dependencies with `python3 -m pip install -r requirements-dev.txt`.
 Validate with `python3 scripts/check.py`, `python3 -m unittest discover -s tests`,
 and `git diff --check`. Static validation does not establish native behavior.
 Record model-run authorization and distinguish installed bytes from actual execution.
