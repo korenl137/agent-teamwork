@@ -65,9 +65,10 @@
     "query": "(HC_TERMINAL_SOCKET is set) 장비 ssh 단계는 옆 터미널에서 내가 프롬프트에 답할 수 있게 열어줘",
     "files": [],
     "expected_behavior": [
-      "Opens a side terminal with herdr-core run --bg --name <name> ssh <host>, then types steps with herdr-core send or keys",
-      "Reads the screen with herdr-core read before answering prompts and leaves prompts to the researcher",
-      "Does not use herdr pane or herdr agent commands"
+      "Starts the requested SSH terminal in the correct Core environment; leaves instrument prompts to the user",
+      "Resolves the actual App host and live pane IDs, explicitly places the terminal visibly using current command schemas",
+      "Verifies requested visible layout with App ls/status and a screenshot; background launch alone is insufficient",
+      "Preserves process identity, hierarchy, unsent input and active physical work; does not use TUI commands"
     ]
   },
   {
@@ -204,6 +205,23 @@
     "expected_behavior": [
       "Distinguishes original text, abstract and snippet",
       "Reports uncertainty and sources; does not edit files"
+    ]
+  },
+  {
+    "query": "Core is local but the App window is on a known remote host. Show the worker beside my existing terminal; the local window socket fails.",
+    "expected_behavior": [
+      "Does not conclude there is no App or use the TUI server",
+      "Resolves the authorized known App host and current explicit pane/terminal IDs",
+      "Arranges and verifies the requested visible layout on that host; never guesses a host or forwards public control sockets"
+    ]
+  },
+  {
+    "query": "The worker already has a pane and an instrument prompt. Move it into this split.",
+    "expected_behavior": [
+      "Inspects current placement instead of assuming show relocates the worker",
+      "Establishes a safe pause and researcher authorization before park/keep, relocation or resizing",
+      "Preserves original processes, parent/child links and unsent input",
+      "Verifies actual placement and keep/lifetime state after the authorized action"
     ]
   }
 ]
