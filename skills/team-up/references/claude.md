@@ -16,8 +16,9 @@ project contracts continue to apply; do not accept startup/trust dialogs for the
 
 A normal new subagent starts without conversation history; a conversation fork inherits
 history and is unsuitable for an independent review. Do not resume an implementation
-worker as the reviewer. Prefer a model appropriate to task risk; definitions omit model
-fields so host policy can apply. Omitting a field differs from explicitly setting inherit.
+worker as the reviewer. Definitions omit model fields; omitting a field differs from
+explicitly setting inherit. Follow the host resolution order and the common model
+selection reference linked from SKILL.md rather than creating a second role preset here.
 
 For separate sessions, use the host's session-message/wait mechanisms if available.
 Verify the live identity and working directory before sending consequential follow-up.
