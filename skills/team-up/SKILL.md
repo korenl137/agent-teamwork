@@ -2,10 +2,10 @@
 name: team-up
 description: >-
   Coordinates delegated work, verifies results and carries collaboration through review,
-  integration and cleanup. Use for team-up, 팀업, 나눠서 작업, or coordinating workers
+  integration and cleanup. Use for team-up, splitting work among workers, or coordinating workers
   across tasks or repositories.
 metadata:
-  version: "0.5.2"
+  version: "0.5.3"
 ---
 
 # Team up
