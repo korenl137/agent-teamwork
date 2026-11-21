@@ -8,7 +8,9 @@ nested loop. Delegate a piece when it needs little from the rest of the work and
 return a compact result:
 
 - Independent paths that run in parallel with fresh, disposable contexts.
-- A broad sweep or long log whose detail would bloat the main context.
+- A broad sweep or long log whose detail would bloat the main context, or a loop that
+  shows measurable degradation from its size.
+- A loop that struggles to choose tools or holds conflicting instructions for a task.
 - Independent verification, or a permission boundary the main loop should not hold.
 - A context-free collection task that the consumer's cost policy routes to a cheaper
   worker; record cost as the reason.

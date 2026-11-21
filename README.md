@@ -1,7 +1,8 @@
 # agent-teamwork
 
-Native-first collaboration contracts for coding agents: delegate bounded work, verify
-original evidence, review independently, and finish integration and cleanup.
+Native-first collaboration contracts for coding agents: keep work in the main loop,
+delegate pieces that need little shared context, verify original evidence, review
+independently, and finish integration and cleanup.
 
 Claude Code is the first target. This repository adds operating contracts to native
 agents; it does not supply an agent runtime, model router or automatic approval system.
@@ -17,16 +18,16 @@ Other hosts can reuse the contracts, but their execution compatibility is unveri
 | inspector | Optional agent | Reconcile claims with timestamped state evidence |
 | Explore / general-purpose | Claude built-ins | Repository discovery / implementation |
 
-The main session conducts collaboration. It may implement small single tasks directly;
+The main session conducts collaboration and does work that needs its context directly;
 in collaboration mode, worker fixes go back to their owner. Conductor integration edits
 follow the same risk-based review criteria as worker changes. There is no custom
 implementer or orchestrator.
 
 Work in the main loop by default and delegate pieces that need little shared context
 and return a compact result. Use subagents by default for that delegation. Separate
-sessions serve required independent environments, persistence or direct user interaction. The
-[operating decisions](skills/team-up/references/operating.md) also define when to
-report to the user and how to scale review effort to risk.
+sessions serve required independent environments, persistence or direct user
+interaction. The [operating decisions](skills/team-up/references/operating.md) also
+define when to report to the user and how to scale review effort to risk.
 
 ## Install in Claude Code
 
