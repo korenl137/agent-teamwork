@@ -11,6 +11,8 @@ that worker exits. For separate hosts, agree how the report will be retrieved.
 - Dependencies, relevant project contracts and prohibited/out-of-scope changes.
 - The user's applicable constraints, corrections and decisions with their reasons; a new
   worker inherits neither the conversation nor the main session's auto memory.
+- For implementation, the decisions the work depends on as a list, and the instruction to
+  stop and ask on a decision the list does not cover.
 - Evidence form: when the conductor will build on the findings, verbatim quotes with
   their location and the extent of each source actually read.
 - Authorized actions and where to stop for decisions or approval.

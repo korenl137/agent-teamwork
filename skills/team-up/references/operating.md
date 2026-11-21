@@ -8,8 +8,9 @@ nested loop. Delegate a piece when it needs little from the rest of the work and
 return a compact result:
 
 - Independent paths that run in parallel with fresh, disposable contexts.
-- A broad sweep or long log whose detail would bloat the main context, or a loop that
-  shows measurable degradation from its size.
+- A broad sweep or long log whose detail would bloat the main context (as a rough guide,
+  more than about 20 files or 5,000 lines of source that the main loop will not reuse
+  verbatim), or a loop that shows measurable degradation from its size.
 - A loop that struggles to choose tools or holds conflicting instructions for a task.
 - Independent verification, or a permission boundary the main loop should not hold.
 - A context-free collection task that the consumer's cost policy routes to a cheaper
@@ -17,8 +18,9 @@ return a compact result:
 
 Split by context, not by role: a worker per problem type passes information back and
 forth and loses fidelity at each handoff. Delegate implementation only when the task,
-its decisions and its acceptance checks can be stated in the handoff; otherwise keep it
-in the main loop. Revisit an existing delegation pattern when its reason no longer holds.
+its acceptance checks and a list of the decisions it depends on can be stated in the
+handoff, and have the worker stop and ask on a decision the list does not cover; when
+that list cannot be written, keep the work in the main loop. Revisit an existing delegation pattern when its reason no longer holds.
 
 ## Subagent or separate session
 
