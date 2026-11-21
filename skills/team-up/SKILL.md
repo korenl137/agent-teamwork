@@ -5,7 +5,7 @@ description: >-
   integration and cleanup. Use for team-up, splitting work up, or coordinating workers
   across tasks or repositories.
 metadata:
-  version: "0.6.0"
+  version: "0.6.1"
 ---
 
 # Team up
