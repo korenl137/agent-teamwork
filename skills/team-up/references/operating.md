@@ -1,10 +1,27 @@
 # Execution, reporting and review decisions
 
+## Main loop or delegation
+
+Work in the main loop by default. A single loop that keeps earlier results in one
+context can connect them, while each delegation hands back a lossy summary and adds a
+nested loop. Delegate a piece when it needs little from the rest of the work and can
+return a compact result:
+
+- Independent paths that run in parallel with fresh, disposable contexts.
+- A broad sweep or long log whose detail would bloat the main context.
+- Independent verification, or a permission boundary the main loop should not hold.
+- A context-free collection task that the consumer's cost policy routes to a cheaper
+  worker; record cost as the reason.
+
+Split by context, not by role: a worker per problem type passes information back and
+forth and loses fidelity at each handoff. Delegate implementation only when the task,
+its decisions and its acceptance checks can be stated in the handoff; otherwise keep it
+in the main loop. Revisit an existing delegation pattern when its reason no longer holds.
+
 ## Subagent or separate session
 
-Do small, tightly coupled work directly. For bounded delegation whose evidence can
-return within the current task, default to a native subagent, including implementation
-and review. Repository/worktree isolation is a separate decision: a subagent can use
+For bounded delegation whose evidence can return within the current task, default to a
+native subagent, including self-contained implementation and review. Repository/worktree isolation is a separate decision: a subagent can use
 an isolated worktree; a new terminal does not itself isolate files or credentials.
 
 Choose a separate session when it supplies a required capability:

@@ -22,8 +22,9 @@ in collaboration mode, worker fixes go back to their owner. Conductor integratio
 follow the same risk-based review criteria as worker changes. There is no custom
 implementer or orchestrator.
 
-Use subagents by default for bounded delegation. Separate sessions serve required
-independent environments, persistence or direct user interaction. The
+Work in the main loop by default and delegate pieces that need little shared context
+and return a compact result. Use subagents by default for that delegation. Separate
+sessions serve required independent environments, persistence or direct user interaction. The
 [operating decisions](skills/team-up/references/operating.md) also define when to
 report to the user and how to scale review effort to risk.
 
