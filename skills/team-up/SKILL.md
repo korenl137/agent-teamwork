@@ -5,7 +5,7 @@ description: >-
   integration and cleanup. Use for team-up, splitting work up, or coordinating workers
   across tasks or repositories.
 metadata:
-  version: "0.5.3"
+  version: "0.6.0"
 ---
 
 # Team up
@@ -14,24 +14,32 @@ Use native agents and existing project contracts. This procedure grants no addit
 execution, publication, merge, installation or cleanup authority. Before dispatching
 work or changing its scope/risk, read [model selection](references/models.md).
 
-1. **Choose direct work or delegation.** Do small, tightly coupled work directly.
-   For bounded delegated work, default to a native subagent. Use a separate session
-   for required independent environment/permissions, persistence/reconnection, or
-   user-requested direct observation/intervention; size or a PR alone is not a reason.
+1. **Choose the main loop or delegation.** Work in the main loop by default, above
+   all when the work needs this conversation's context or decisions. Delegate when a
+   piece needs little from the rest and returns a compact result: parallel independent
+   paths, a broad sweep that would bloat the main context, a loop that struggles with
+   tool choice or conflicting instructions, independent verification or a separate
+   permission boundary, or a context-free collection task the consumer's cost policy
+   routes to a cheaper worker. Split by context, not by role. For delegation,
+   default to a native subagent; use a separate session only for a required independent
+   environment/permissions, persistence/reconnection, or user-requested direct
+   observation/intervention; size or a PR alone is not a reason.
    Read [operating decisions](references/operating.md) when choosing execution,
-   reporting progress or deciding review scope. Native Explore handles discovery;
-   general-purpose workers implement. The conductor owns scope, decisions and
-   integration; send worker fixes back to their owner. Apply the same risk-based
-   review criteria to conductor-written and worker-written changes.
+   reporting progress or deciding review scope. Native Explore handles broad discovery;
+   general-purpose workers take self-contained edits. The conductor owns scope,
+   decisions and integration; send worker fixes back to their owner. Apply the same
+   risk-based review criteria to conductor-written and worker-written changes.
 2. **Hand off a bounded task.** State the original objective, acceptance criteria,
-   ownership, dependencies, allowed actions, stop conditions and a recoverable reply
-   route. Durable/separate-session work needs an absolute retained report location.
-   One writer per shared file. Use the handoff
+   ownership, dependencies, allowed actions, stop conditions, the user's applicable
+   constraints and corrections (workers inherit neither the conversation nor auto
+   memory) and a recoverable reply route. Durable/separate-session work needs an
+   absolute retained report location. One writer per shared file. Use the handoff
    template in [contracts](references/contracts.md). Follow project isolation rules.
    Read [Claude execution](references/claude.md) for native dispatch and replies;
    read [Herdr](references/herdr.md) only for separate terminals or visible layout.
 3. **Receive evidence, not just status.** Require changed paths/commits, commands and
-   results, open concerns, user interventions and the next safe action. Read the
+   results, open concerns, user interventions and the next safe action. When you will
+   build on a worker's findings, require verbatim quotes with their locations. Read the
    supporting diff, logs or artifacts yourself. Refresh the relevant remote before
    relying on remote state; a local read-only task needs no fetch. Use messages or
    completion notifications to wait, not repeated screen reads.

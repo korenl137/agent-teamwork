@@ -9,6 +9,10 @@ that worker exits. For separate hosts, agree how the report will be retrieved.
 - Original request and observable completion criteria.
 - Target repository/artifacts, starting revision and one owner per shared file.
 - Dependencies, relevant project contracts and prohibited/out-of-scope changes.
+- The user's applicable constraints, corrections and decisions with their reasons; a new
+  worker inherits neither the conversation nor the main session's auto memory.
+- Evidence form: when the conductor will build on the findings, verbatim quotes with
+  their location and the extent of each source actually read.
 - Authorized actions and where to stop for decisions or approval.
 - Verification expectations, including review before physical/device execution.
 - Reply route and relevant lifetime expectations; an absolute retained report location

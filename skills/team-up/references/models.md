@@ -17,7 +17,7 @@ Public role definitions omit model fields so consumer choices can apply.
 
 Do not choose every worker's model solely from the conductor's choice. Do not weaken
 review merely because implementation was mechanical. Reconsider the choice when scope,
-risk or observed difficulty changes. A capable conductor may still do small direct work;
+risk or observed difficulty changes. The conductor does work that needs its context in the main loop;
 model strength does not remove the independent-review or approval boundary.
 
 ## Availability and evidence

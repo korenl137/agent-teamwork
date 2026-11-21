@@ -5,8 +5,9 @@ rather than assuming a version's optional features. Existing product permissions
 project contracts continue to apply; do not accept startup/trust dialogs for the user.
 
 - Explore: repository discovery. Reuse the built-in role; a consumer may override its model.
-- General-purpose: bounded implementation or work that needs edits. Supply the task
-  contract, working directory and report/reply route. No permanent implementer is needed.
+- General-purpose: self-contained implementation or other work that needs edits. Supply
+  the task contract, working directory and report/reply route. No permanent implementer
+  is needed.
 - Reviewer: use the installed read-only reviewer in a new context. The caller supplies
   original requirements and the exact target, excluding previous reasoning and conclusions.
 - Optional researcher: external evidence where source and reading limits matter.

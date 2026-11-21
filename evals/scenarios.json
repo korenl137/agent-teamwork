@@ -250,7 +250,7 @@
   {
     "query": "Herdr is available. Delegate a large but bounded implementation that can finish within this task, with the same environment and permissions. No visible session was requested.",
     "expected_behavior": [
-      "Defaults to a native subagent, not a separate session merely because the work is large, creates a PR, or Herdr exists",
+      "Uses a native subagent for the requested delegation, not a separate session merely because the work is large, creates a PR, or Herdr exists",
       "Uses required worktree isolation independently of the execution choice"
     ]
   },
@@ -307,6 +307,50 @@
       "Obtains independent review despite small line count and cost concerns",
       "Preserves project-mandated review and consequential execution/approval boundaries",
       "Does not claim self-checks replace required independent review"
+    ]
+  },
+  {
+    "skills": [
+      "team-up"
+    ],
+    "query": "방금 우리가 정한 설계대로 이 모듈을 리팩터링해줘. 팀업으로 진행해",
+    "files": [],
+    "expected_behavior": [
+      "Does the work in the main loop because it depends on decisions made in this conversation",
+      "Does not hand it to a sub-agent with a summary of the conversation; if part of it is later delegated, the handoff states the decisions and their reasons explicitly"
+    ]
+  },
+  {
+    "skills": [
+      "team-up"
+    ],
+    "query": "Collect only the version numbers from these 20 release-note URLs; the consumer's policy routes plain collection to a cheaper research worker.",
+    "files": [],
+    "expected_behavior": [
+      "May delegate the context-free collection to a worker selected by the consumer's model policy, citing cost as the reason rather than one of the fold-out conditions",
+      "Asks for each value with its source URL and the exact supporting line, and spot-checks them before use"
+    ]
+  },
+  {
+    "skills": [
+      "team-up"
+    ],
+    "query": "I will build a criteria document from the worker's reading of five long official documents. Write the handoff.",
+    "files": [],
+    "expected_behavior": [
+      "Requires each finding to carry a verbatim quote and its location (file and line or URL and section) and the extent of the source the worker actually read",
+      "Plans to check the quotes against the saved sources instead of building on a summary"
+    ]
+  },
+  {
+    "skills": [
+      "team-up"
+    ],
+    "query": "Delegate a usage count over local session logs. Earlier in this conversation I said session records may be read for counts and dates only.",
+    "files": [],
+    "expected_behavior": [
+      "States the user's constraint in the handoff, because a sub-agent inherits neither the conversation nor the main session's auto memory",
+      "Does not rely on the worker discovering the constraint on its own"
     ]
   }
 ]
