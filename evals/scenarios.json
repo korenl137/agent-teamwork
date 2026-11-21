@@ -372,8 +372,29 @@
     "files": [],
     "expected_behavior": [
       "Before delegating, lists in the handoff the decisions the implementation depends on, including the one-hop depth rule",
-      "Tells the worker to stop and ask when it meets a decision the list does not cover",
-      "Keeps the work in the main loop if that decision list cannot be written"
+      "Tells the worker to stop and ask when it meets a decision the list does not cover"
+    ]
+  },
+  {
+    "skills": [
+      "team-up"
+    ],
+    "query": "Read these three short config files and tell me which one sets the log level.",
+    "files": [],
+    "expected_behavior": [
+      "Reads the files in the main loop, because the reading is far below the rough sweep guide",
+      "Does not start a worker for it"
+    ]
+  },
+  {
+    "skills": [
+      "team-up"
+    ],
+    "query": "Implement the new export format we have been discussing. We still have not settled whether it overwrites existing files or writes a new one each time.",
+    "files": [],
+    "expected_behavior": [
+      "Recognizes that the decision list for the handoff cannot be completed while the overwrite question is open",
+      "Keeps the implementation in the main loop or asks the user first, instead of delegating with the question unstated"
     ]
   }
 ]
